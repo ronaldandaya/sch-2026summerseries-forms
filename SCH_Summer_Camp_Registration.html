@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shark City Hoops — Summer Camp Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --teal:#00A896; --teal-dark:#007f71; --teal-light:#1fd1bf;
+    --bg1:#0a0a0a; --bg2:#1a1a1a; --bg3:#0d2a2a;
+    --card:rgba(255,255,255,0.04); --card2:rgba(0,168,150,0.06);
+    --border:rgba(0,168,150,0.18); --text:#e8edf2; --muted:#8a98a6;
+    --white:#fff; --accent:#ffa500; --err:#ff5d5d; --ok:#00c864;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:linear-gradient(170deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+    background-attachment:fixed; color:var(--text);
+    min-height:100vh; padding:28px 16px 60px; line-height:1.5;
+  }
+  .wrap{max-width:720px;margin:0 auto;}
+  /* Header */
+  .header{text-align:center;margin-bottom:28px;}
+  .header img{width:120px;height:auto;margin-bottom:12px;filter:drop-shadow(0 4px 14px rgba(0,168,150,.35));}
+  .header h1{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:2px;color:var(--white);line-height:.95;}
+  .header h1 span{color:var(--teal);}
+  .header .tag{display:inline-block;background:var(--accent);color:#111;font-weight:800;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;border-radius:20px;padding:5px 16px;margin-top:12px;}
+  .header .loc{color:var(--muted);font-size:.9rem;margin-top:10px;}
+  /* Card */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:20px;}
+  .card-title{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;letter-spacing:1.5px;color:var(--teal);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+  /* Fields */
+  .field{margin-bottom:16px;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row .field{flex:1;min-width:160px;}
+  label{display:block;font-size:.74rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+  label .req{color:var(--teal);}
+  input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{
+    width:100%;background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:10px;
+    padding:12px 14px;color:var(--text);font-family:inherit;font-size:.95rem;transition:.15s;
+  }
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(0,168,150,.15);}
+  textarea{resize:vertical;min-height:70px;}
+  select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300A896' d='M6 9L1 4h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+  /* Week selectors */
+  .weeks{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:520px){.weeks{grid-template-columns:1fr;}}
+  .week-opt{position:relative;}
+  .week-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;}
+  .week-opt .box{border:1.5px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:.15s;background:rgba(0,0,0,.25);height:100%;}
+  .week-opt .box .wk{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white);letter-spacing:1px;}
+  .week-opt .box .dt{color:var(--muted);font-size:.85rem;margin:2px 0 8px;}
+  .week-opt .box .pr{color:var(--teal);font-weight:800;font-size:1.05rem;}
+  .week-opt input:checked + .box{border-color:var(--teal);background:var(--card2);box-shadow:0 0 0 3px rgba(0,168,150,.12);}
+  .week-opt .check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;}
+  .week-opt input:checked ~ .box .check{background:var(--teal);border-color:var(--teal);}
+  /* Payment */
+  .pay-opts{display:flex;gap:12px;flex-wrap:wrap;}
+  .pay-opt{flex:1;min-width:130px;position:relative;}
+  .pay-opt input{position:absolute;opacity:0;inset:0;cursor:pointer;}
+  .pay-opt label{display:block;text-align:center;border:1.5px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;color:var(--text);text-transform:none;font-size:.95rem;font-weight:600;letter-spacing:0;margin:0;transition:.15s;}
+  .pay-opt input:checked + label{border-color:var(--teal);background:var(--card2);color:var(--teal);}
+  .pay-note{margin-top:14px;font-size:.85rem;color:var(--muted);background:rgba(0,0,0,.3);border-left:3px solid var(--teal);border-radius:6px;padding:12px 14px;}
+  .pay-note strong{color:var(--text);}
+  /* Waiver */
+  .waiver-text{font-size:.82rem;color:var(--muted);background:rgba(0,0,0,.3);border:1px solid var(--border);border-radius:10px;padding:14px;max-height:160px;overflow:auto;margin-bottom:14px;}
+  .check-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px;}
+  .check-row input{width:20px;height:20px;margin-top:2px;accent-color:var(--teal);flex-shrink:0;}
+  .check-row label{text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--text);font-weight:500;margin:0;}
+  /* Summary + submit */
+  .summary{position:sticky;bottom:0;background:linear-gradient(0deg,var(--bg2),rgba(26,26,26,.92));border:1px solid var(--teal);border-radius:16px;padding:18px 22px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .summary .lbl{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;}
+  .summary .tot{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--teal);line-height:1;}
+  .btn{background:var(--teal);color:#04110f;border:none;border-radius:12px;padding:15px 30px;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:1.5px;cursor:pointer;transition:.15s;}
+  .btn:hover{background:var(--teal-light);}
+  .btn:disabled{opacity:.6;cursor:not-allowed;}
+  #status-msg{display:none;border-radius:10px;padding:14px;margin-top:14px;font-weight:600;text-align:center;}
+  #status-msg.error{background:rgba(255,93,93,.12);border:1px solid var(--err);color:var(--err);}
+  /* Modal */
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
+  .modal.open{display:flex;}
+  .modal-box{background:linear-gradient(160deg,var(--bg2),var(--bg3));border:1.5px solid var(--teal);border-radius:18px;padding:30px;max-width:440px;width:100%;text-align:center;}
+  .modal-box .ic{font-size:2.6rem;}
+  .modal-box h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--teal);letter-spacing:1px;margin:8px 0;}
+  .modal-box p{color:var(--muted);font-size:.92rem;margin-bottom:10px;}
+  .modal-pay{font-size:.88rem;color:var(--text);background:rgba(0,0,0,.3);border-radius:10px;padding:14px;margin:14px 0;text-align:left;}
+  .modal .btn{margin-top:8px;}
+  .foot{text-align:center;color:var(--muted);font-size:.8rem;margin-top:26px;letter-spacing:1px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <img src="https://cdn4.sportngin.com/attachments/logo_graphic/8104/9893/Shark_City_Hoops_Logo_small.png" alt="Shark City Hoops" onerror="this.style.display='none'" />
+    <h1>SUMMER <span>CAMP</span></h1>
+    <div class="tag">Registration · 2026</div>
+    <div class="loc">Piedmont Hills HS, San Jose · Mon–Thu, 9:00am–3:00pm</div>
+  </div>
+
+  <form id="reg-form" novalidate>
+    <input type="hidden" name="formType" value="Summer Camp" />
+
+    <!-- Camp weeks -->
+    <div class="card">
+      <div class="card-title">🏀 Select Camp Week(s) — $250 / week</div>
+      <div class="weeks">
+        <div class="week-opt">
+          <input type="checkbox" class="wk-check" name="week_jun29" value="Week of June 29 – July 2" data-price="250" />
+          <span class="check">✓</span>
+          <div class="box">
+            <div class="wk">Week 2</div>
+            <div class="dt">June 29 – July 2</div>
+            <div class="pr">$250</div>
+          </div>
+        </div>
+        <div class="week-opt">
+          <input type="checkbox" class="wk-check" name="week_jul13" value="Week of July 13 – 16" data-price="250" />
+          <span class="check">✓</span>
+          <div class="box">
+            <div class="wk">Week 4</div>
+            <div class="dt">July 13 – 16</div>
+            <div class="pr">$250</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Player -->
+    <div class="card">
+      <div class="card-title">👤 Player Information</div>
+      <div class="row">
+        <div class="field"><label>First Name <span class="req">*</span></label><input type="text" name="playerFirst" required /></div>
+        <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" name="playerLast" required /></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Grade (Fall 2026) <span class="req">*</span></label>
+          <select name="grade" required>
+            <option value="">Select…</option>
+            <option>1st</option><option>2nd</option><option>3rd</option><option>4th</option>
+            <option>5th</option><option>6th</option><option>7th</option><option>8th</option><option>9th+</option>
+          </select>
+        </div>
+        <div class="field"><label>Date of Birth</label><input type="date" name="dob" /></div>
+      </div>
+      <div class="field"><label>Camp T-Shirt Size <span class="req">*</span></label>
+        <select name="shirtSize" required>
+          <option value="">Select…</option>
+          <option>Youth S</option><option>Youth M</option><option>Youth L</option>
+          <option>Adult S</option><option>Adult M</option><option>Adult L</option><option>Adult XL</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Parent -->
+    <div class="card">
+      <div class="card-title">👪 Parent / Guardian</div>
+      <div class="field"><label>Parent / Guardian Name <span class="req">*</span></label><input type="text" name="parentName" required /></div>
+      <div class="row">
+        <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" required /></div>
+        <div class="field"><label>Phone <span class="req">*</span></label><input type="tel" name="phone" required /></div>
+      </div>
+    </div>
+
+    <!-- Emergency + medical -->
+    <div class="card">
+      <div class="card-title">🚑 Emergency & Medical</div>
+      <div class="row">
+        <div class="field"><label>Emergency Contact Name <span class="req">*</span></label><input type="text" name="emergencyName" required /></div>
+        <div class="field"><label>Emergency Phone <span class="req">*</span></label><input type="tel" name="emergencyPhone" required /></div>
+      </div>
+      <div class="field"><label>Allergies / Medical Notes</label><textarea name="medical" placeholder="Allergies, conditions, medications, or none"></textarea></div>
+    </div>
+
+    <!-- Payment -->
+    <div class="card">
+      <div class="card-title">💳 Payment Method</div>
+      <div class="pay-opts">
+        <div class="pay-opt"><input type="radio" name="payment" id="pay-venmo" value="Venmo" required /><label for="pay-venmo">Venmo</label></div>
+        <div class="pay-opt"><input type="radio" name="payment" id="pay-zelle" value="Zelle" /><label for="pay-zelle">Zelle</label></div>
+        <div class="pay-opt"><input type="radio" name="payment" id="pay-other" value="Cash / Other" /><label for="pay-other">Cash / Other</label></div>
+      </div>
+      <div class="pay-note" id="pay-note"></div>
+    </div>
+
+    <!-- Waiver -->
+    <div class="card">
+      <div class="card-title">📋 Liability Waiver & Photo Release</div>
+      <div class="waiver-text">
+        I, the parent/legal guardian of the registered player, acknowledge that participation in Shark City Hoops basketball camps and training involves inherent risks of physical injury. In consideration of my child's participation, I release and hold harmless Shark City Hoops, its coaches, staff, and the host facility from any claims, liability, or expense arising from injury or illness sustained during program activities, except in cases of gross negligence. I confirm my child is physically able to participate and that the medical information provided is accurate. I authorize Shark City Hoops staff to seek emergency medical treatment if needed.
+      </div>
+      <div class="check-row">
+        <input type="checkbox" name="waiverAgree" id="waiverAgree" required />
+        <label for="waiverAgree">I have read and agree to the liability waiver above. <span class="req">*</span></label>
+      </div>
+      <div class="check-row">
+        <input type="checkbox" name="photoRelease" id="photoRelease" />
+        <label for="photoRelease">I grant permission for photos/video of my child taken during the program to be used by Shark City Hoops for promotional purposes. (optional)</label>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div>
+        <div class="lbl">Total Due</div>
+        <div class="tot" id="total-display">$0</div>
+      </div>
+      <button type="submit" class="btn" id="submit-btn">Register Now</button>
+    </div>
+    <div id="status-msg"></div>
+  </form>
+
+  <div class="foot">SHARK CITY HOOPS — SAN JOSE AAU BASKETBALL</div>
+</div>
+
+<!-- Confirmation modal -->
+<div class="modal" id="confirm-modal">
+  <div class="modal-box">
+    <div class="ic">✅</div>
+    <h3>You're Registered!</h3>
+    <p id="modal-sub"></p>
+    <div class="modal-pay" id="modal-pay"></div>
+    <button class="btn" id="modal-close-btn">Done</button>
+  </div>
+</div>
+
+<script>
+  // ── CONFIG — Ron: fill these 3 in ──────────────────────────
+  const CONFIG = {
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxWBzOyf4-41Ky3zuZJecCnG5kv94hCfbfyBshsSL7TZOW0QRWAkm1PLDSMoXCb6QS8Pw/exec',
+    VENMO: '@RonAndaya',
+    ZELLE: 'ronald.andaya@gmail.com'
+  };
+  // ───────────────────────────────────────────────────────────
+  const PRICE_PER_WEEK = 250;
+
+  const form = document.getElementById('reg-form');
+  const totalDisplay = document.getElementById('total-display');
+  const weekChecks = document.querySelectorAll('.wk-check');
+  const payNote = document.getElementById('pay-note');
+  const statusMsg = document.getElementById('status-msg');
+  const submitBtn = document.getElementById('submit-btn');
+
+  function selectedWeeks(){ return [...weekChecks].filter(c=>c.checked); }
+  function updateTotal(){
+    const n = selectedWeeks().length;
+    totalDisplay.textContent = '$' + (n*PRICE_PER_WEEK).toLocaleString();
+  }
+  weekChecks.forEach(c=>c.addEventListener('change',updateTotal));
+  updateTotal();
+
+  function payInstructions(method){
+    if(method==='Venmo') return 'Send payment to <strong>'+CONFIG.VENMO+'</strong> (Venmo).';
+    if(method==='Zelle') return 'Send payment to <strong>'+CONFIG.ZELLE+'</strong> (Zelle).';
+    return 'We’ll arrange cash or another method with you directly.';
+  }
+  form.payment && form.querySelectorAll('input[name=payment]').forEach(r=>{
+    r.addEventListener('change',()=>{ payNote.innerHTML = payInstructions(r.value) + ' Please pay after you receive confirmation.'; });
+  });
+
+  function buildPayload(){
+    const data={}; const fd=new FormData(form);
+    fd.forEach((v,k)=>{ data[k]=v; });
+    data.weeksSelected = selectedWeeks().map(c=>c.value).join(' + ');
+    data.numWeeks = selectedWeeks().length;
+    data.total = totalDisplay.textContent;
+    data.waiverAgree = document.getElementById('waiverAgree').checked ? 'Yes':'No';
+    data.photoRelease = document.getElementById('photoRelease').checked ? 'Yes':'No';
+    data.timestamp = new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'});
+    return data;
+  }
+  function validate(d){
+    if(selectedWeeks().length===0) return 'Please select at least one camp week.';
+    if(!d.playerFirst?.trim()||!d.playerLast?.trim()) return "Please enter the player's name.";
+    if(!d.grade) return 'Please select a grade.';
+    if(!d.shirtSize) return 'Please select a t-shirt size.';
+    if(!d.parentName?.trim()) return 'Please enter a parent/guardian name.';
+    if(!d.email?.includes('@')) return 'Please enter a valid email.';
+    if(!d.phone?.trim()) return 'Please enter a phone number.';
+    if(!d.emergencyName?.trim()||!d.emergencyPhone?.trim()) return 'Please complete the emergency contact.';
+    if(!d.payment) return 'Please select a payment method.';
+    if(d.waiverAgree!=='Yes') return 'Please agree to the liability waiver to continue.';
+    return null;
+  }
+  function showErr(msg){ statusMsg.textContent='⚠️ '+msg; statusMsg.className='error'; statusMsg.style.display='block'; statusMsg.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault(); statusMsg.style.display='none';
+    const data=buildPayload(); const err=validate(data);
+    if(err){ showErr(err); return; }
+    submitBtn.disabled=true; submitBtn.textContent='Submitting…';
+
+    document.getElementById('modal-sub').innerHTML = data.playerFirst+' is signed up for <strong>'+data.weeksSelected+'</strong>.';
+    document.getElementById('modal-pay').innerHTML = '<strong>Total: '+data.total+'</strong><br>'+payInstructions(data.payment)+'<br>A confirmation will be sent to <strong>'+data.email+'</strong>.';
+    document.getElementById('confirm-modal').classList.add('open');
+
+    if(CONFIG.APPS_SCRIPT_URL && !CONFIG.APPS_SCRIPT_URL.startsWith('PASTE_')){
+      fetch(CONFIG.APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(()=>{});
+    }
+    form.reset(); updateTotal(); payNote.innerHTML=''; submitBtn.textContent='Registered ✓';
+  });
+
+  document.getElementById('modal-close-btn').addEventListener('click',()=>{ document.getElementById('confirm-modal').classList.remove('open'); submitBtn.disabled=false; submitBtn.textContent='Register Now'; });
+  document.getElementById('confirm-modal').addEventListener('click',e=>{ if(e.target===e.currentTarget){ e.currentTarget.classList.remove('open'); submitBtn.disabled=false; submitBtn.textContent='Register Now'; } });
+</script>
+</body>
+</html>
