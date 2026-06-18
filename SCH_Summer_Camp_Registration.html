@@ -55,9 +55,9 @@
   .week-opt .box .wk{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--white);letter-spacing:1px;}
   .week-opt .box .dt{color:var(--muted);font-size:.85rem;margin:2px 0 8px;}
   .week-opt .box .pr{color:var(--teal);font-weight:800;font-size:1.05rem;}
-  .week-opt input:checked + .box{border-color:var(--teal);background:var(--card2);box-shadow:0 0 0 3px rgba(0,168,150,.12);}
-  .week-opt .check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;}
-  .week-opt input:checked ~ .box .check{background:var(--teal);border-color:var(--teal);}
+  .week-opt input:checked ~ .box{border-color:var(--teal);background:var(--card2);box-shadow:0 0 0 3px rgba(0,168,150,.12);}
+  .week-opt .check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:transparent;font-size:.8rem;pointer-events:none;z-index:2;}
+  .week-opt input:checked ~ .check{background:var(--teal);border-color:var(--teal);color:#fff;}
   /* Payment */
   .pay-opts{display:flex;gap:12px;flex-wrap:wrap;}
   .pay-opt{flex:1;min-width:130px;position:relative;}
