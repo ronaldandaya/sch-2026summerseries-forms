@@ -105,6 +105,7 @@
     <div class="card">
       <div class="card-title">🏀 Choose Your Training</div>
       <div class="card-sub">Use the + / − to select quantities. Mix and match — e.g. a Week Pass plus a 1:1 package.</div>
+      <div class="pay-note" style="margin-top:0;margin-bottom:16px;">Small group runs at <strong>$40/hr with a 5-player minimum</strong>. If fewer players register for your time slot, it may run as semi-private or 1:1 at the listed rates. <strong>We'll confirm your group, format, and final price before any payment</strong> — your total below is an estimate.</div>
 
       <div class="prog-group">
         <div class="gh">Small Group Training (5–8 players)</div>
@@ -263,7 +264,7 @@
     <div class="summary">
       <div class="summary-rows" id="summary-rows"></div>
       <div class="top">
-        <div><div class="lbl">Total</div><div class="tot" id="total-display">$0</div></div>
+        <div><div class="lbl">Estimated Total</div><div class="tot" id="total-display">$0</div></div>
         <button type="submit" class="btn" id="submit-btn">Register Now</button>
       </div>
     </div>
@@ -362,7 +363,7 @@
     submitBtn.disabled=true; submitBtn.textContent='Submitting…';
 
     document.getElementById('modal-sub').innerHTML = data.playerFirst+' is registered for: <strong>'+data.itemsSelected+'</strong>.';
-    document.getElementById('modal-pay').innerHTML = '<strong>Total: '+data.total+'</strong><br>'+payInstructions(data.payment)+'<br>A confirmation will be sent to <strong>'+data.email+'</strong>.';
+    document.getElementById('modal-pay').innerHTML = '<strong>Estimated total: '+data.total+'</strong><br>We’ll confirm your group, format, and final price before any payment.<br>'+payInstructions(data.payment)+'<br>A confirmation will be sent to <strong>'+data.email+'</strong>.';
     document.getElementById('confirm-modal').classList.add('open');
 
     if(CONFIG.APPS_SCRIPT_URL && !CONFIG.APPS_SCRIPT_URL.startsWith('PASTE_')){
