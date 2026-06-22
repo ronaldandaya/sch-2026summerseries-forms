@@ -117,19 +117,15 @@
       <div class="card-title">🏀 Group Training — Pick Your Days</div>
       <div class="card-sub">90-min small group · 12:30–2:00pm · 5–8 players · <strong>$70/day</strong>. Pick all four days in a week and it automatically becomes the <strong>$240 Week Pass</strong> (save $40).</div>
         <div class="wk-block">
-          <div class="wk-head"><span class="wk-name">Week 1</span><span class="wk-dt">Jun 22–25</span><span class="wk-sub" data-sub="1"></span></div>
-          <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Thu" /><span class="dname">Thu</span></label></div>
-        </div>
-        <div class="wk-block">
-          <div class="wk-head"><span class="wk-name">Week 2</span><span class="wk-dt">Jun 29–Jul 2</span><span class="wk-sub" data-sub="2"></span></div>
+          <div class="wk-head"><span class="wk-name">Week 1</span><span class="wk-dt">Jun 29–Jul 2</span><span class="wk-sub" data-sub="2"></span></div>
           <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Thu" /><span class="dname">Thu</span></label></div>
         </div>
         <div class="wk-block">
-          <div class="wk-head"><span class="wk-name">Week 3</span><span class="wk-dt">Jul 6–9</span><span class="wk-sub" data-sub="3"></span></div>
+          <div class="wk-head"><span class="wk-name">Week 2</span><span class="wk-dt">Jul 6–9</span><span class="wk-sub" data-sub="3"></span></div>
           <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Thu" /><span class="dname">Thu</span></label></div>
         </div>
         <div class="wk-block">
-          <div class="wk-head"><span class="wk-name">Week 4</span><span class="wk-dt">Jul 13–16</span><span class="wk-sub" data-sub="4"></span></div>
+          <div class="wk-head"><span class="wk-name">Week 3</span><span class="wk-dt">Jul 13–16</span><span class="wk-sub" data-sub="4"></span></div>
           <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Thu" /><span class="dname">Thu</span></label></div>
         </div>
       <div class="pay-note" style="margin-top:14px;margin-bottom:0;">5-player minimum per session. If fewer register for a day it may run as semi-private or 1:1. <strong>We'll confirm your group, days, and final price before any payment</strong> — your total below is an estimate.</div>
@@ -270,7 +266,7 @@
   const statusMsg = document.getElementById('status-msg');
   const submitBtn = document.getElementById('submit-btn');
 
-  const WEEKS=[{n:1,label:'Week 1'},{n:2,label:'Week 2'},{n:3,label:'Week 3'},{n:4,label:'Week 4'}];
+  const WEEKS=[{n:2,label:'Week 1'},{n:3,label:'Week 2'},{n:4,label:'Week 3'}];
   const DAY_PRICE=70, WEEK_PASS=240, SEMI={semi_2:65,semi_34:50};
   const dayChecks=[...document.querySelectorAll('.day')];
   const steppers=document.querySelectorAll('.stepper');
