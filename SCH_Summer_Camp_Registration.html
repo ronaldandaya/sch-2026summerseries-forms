@@ -104,9 +104,19 @@
   <form id="reg-form" novalidate>
     <input type="hidden" name="formType" value="Summer Camp" />
 
+    <!-- Player type -->
+    <div class="card">
+      <div class="card-title">👥 Player Type</div>
+      <div class="pay-opts">
+        <div class="pay-opt"><input type="radio" name="playerType" id="pt-sch" value="SCH Player" /><label for="pt-sch">SCH Player</label></div>
+        <div class="pay-opt"><input type="radio" name="playerType" id="pt-comm" value="Community" checked /><label for="pt-comm">Community</label></div>
+      </div>
+      <div class="pay-note">SCH players get the member rate. Choose "Community" if you're new to Shark City Hoops.</div>
+    </div>
+
     <!-- Camp weeks -->
     <div class="card">
-      <div class="card-title">🏀 Select Camp Week(s) — $175 / week</div>
+      <div class="card-title">🏀 Select Camp Week(s) — $175 SCH / $200 Community</div>
       <div class="weeks">
         <label class="week-opt">
           <input type="checkbox" class="wk-check" name="week_jun29" value="Week of June 29 – July 2" data-price="175" />
@@ -242,7 +252,9 @@
     ZELLE: 'ronald.andaya@gmail.com'
   };
   // ───────────────────────────────────────────────────────────
-  const PRICE_PER_WEEK = 175;
+  const CAMP_SCH=175, CAMP_COMM=200;
+  const isSch=()=>document.getElementById("pt-sch").checked;
+  const campRate=()=>isSch()?CAMP_SCH:CAMP_COMM;
 
   const form = document.getElementById('reg-form');
   const totalDisplay = document.getElementById('total-display');
@@ -253,10 +265,12 @@
 
   function selectedWeeks(){ return [...weekChecks].filter(c=>c.checked); }
   function updateTotal(){
-    const n = selectedWeeks().length;
-    totalDisplay.textContent = '$' + (n*PRICE_PER_WEEK).toLocaleString();
+    const r=campRate(), n=selectedWeeks().length;
+    document.querySelectorAll('.week-opt .pr').forEach(el=>el.textContent='$'+r);
+    totalDisplay.textContent='$'+(n*r).toLocaleString();
   }
   weekChecks.forEach(c=>c.addEventListener('change',updateTotal));
+  document.querySelectorAll('input[name=playerType]').forEach(r=>r.addEventListener('change',updateTotal));
   updateTotal();
 
   function payInstructions(method){

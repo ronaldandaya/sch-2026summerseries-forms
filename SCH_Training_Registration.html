@@ -112,10 +112,20 @@
   <form id="reg-form" novalidate>
     <input type="hidden" name="formType" value="Training" />
 
+    <!-- Player type -->
+    <div class="card">
+      <div class="card-title">👥 Player Type</div>
+      <div class="pay-opts">
+        <div class="pay-opt"><input type="radio" name="playerType" id="pt-sch" value="SCH Player" /><label for="pt-sch">SCH Player</label></div>
+        <div class="pay-opt"><input type="radio" name="playerType" id="pt-comm" value="Community" checked /><label for="pt-comm">Community</label></div>
+      </div>
+      <div class="pay-note">SCH players get the member rate. Choose "Community" if you're new to Shark City Hoops.</div>
+    </div>
+
     <!-- Group training day grid -->
     <div class="card">
       <div class="card-title">🏀 Group Training — Pick Your Days</div>
-      <div class="card-sub">90-min small group · 12:30–2:00pm · 5–8 players · <strong>$70/day</strong>. Pick all four days in a week and it automatically becomes the <strong>$240 Week Pass</strong> (save $40).</div>
+      <div class="card-sub">90-min small group · 12:30–2:00pm · 5–8 players · <strong>$70/day SCH ($80 Community)</strong>. Pick all four days in a week and it becomes the <strong>Week Pass — $240 SCH ($270 Community)</strong>.</div>
         <div class="wk-block">
           <div class="wk-head"><span class="wk-name">Week 1</span><span class="wk-dt">Jun 29–Jul 2</span><span class="wk-sub" data-sub="2"></span></div>
           <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Thu" /><span class="dname">Thu</span></label></div>
@@ -267,7 +277,7 @@
   const submitBtn = document.getElementById('submit-btn');
 
   const WEEKS=[{n:2,label:'Week 1'},{n:3,label:'Week 2'},{n:4,label:'Week 3'}];
-  const DAY_PRICE=70, WEEK_PASS=240, SEMI={semi_2:65,semi_34:50};
+  const SEMI={semi_2:65,semi_34:50};
   const dayChecks=[...document.querySelectorAll('.day')];
   const steppers=document.querySelectorAll('.stepper');
   const state={}; steppers.forEach(s=>state[s.dataset.name]=0);
@@ -275,12 +285,13 @@
 
   function calc(){
     let total=0; const lines=[];
+    const sch=document.getElementById('pt-sch').checked, DAY_PRICE=sch?70:80, WEEK_PASS=sch?240:270;
     WEEKS.forEach(w=>{
       const days=dayChecks.filter(c=>c.dataset.week==w.n && c.checked).map(c=>c.dataset.day);
       const sub=document.querySelector('[data-sub="'+w.n+'"]');
       if(days.length===0){ if(sub) sub.textContent=''; return; }
       let cost,note;
-      if(days.length===4){ cost=WEEK_PASS; note='Week Pass · save $40 · $240'; }
+      if(days.length===4){ cost=WEEK_PASS; note='Week Pass · save $'+(4*DAY_PRICE-WEEK_PASS)+' · $'+WEEK_PASS; }
       else { cost=days.length*DAY_PRICE; note=days.length+' day'+(days.length>1?'s':'')+' · $'+cost; }
       if(sub) sub.textContent=note; total+=cost;
       lines.push({label:w.label+' group ('+(days.length===4?'full week':days.length+' day'+(days.length>1?'s':''))+')',sub:cost});
@@ -296,6 +307,7 @@
     return {total,lines};
   }
   dayChecks.forEach(c=>c.addEventListener('change',calc));
+  document.querySelectorAll('input[name=playerType]').forEach(r=>r.addEventListener('change',calc));
   steppers.forEach(stp=>{ const name=stp.dataset.name,valEl=stp.querySelector('.step-val'),row=stp.closest('.prog');
     stp.querySelector('.plus').addEventListener('click',()=>{ if(state[name]<30){ state[name]++; valEl.textContent=state[name]; row.classList.toggle('active',state[name]>0); calc(); }});
     stp.querySelector('.minus').addEventListener('click',()=>{ if(state[name]>0){ state[name]--; valEl.textContent=state[name]; row.classList.toggle('active',state[name]>0); calc(); }});
