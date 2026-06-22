@@ -98,7 +98,7 @@
     <img src="https://cdn4.sportngin.com/attachments/logo_graphic/8104/9893/Shark_City_Hoops_Logo_small.png" alt="Shark City Hoops" onerror="this.style.display='none'" />
     <h1>SUMMER <span>CAMP</span></h1>
     <div class="tag">Registration · 2026</div>
-    <div class="loc">Piedmont Hills HS, San Jose · Mon–Thu, 9:00am–3:00pm</div>
+    <div class="loc">Piedmont Hills HS, San Jose · Mon–Thu, 9:00am–12:00pm (half-day mornings)</div>
   </div>
 
   <form id="reg-form" novalidate>
@@ -106,24 +106,42 @@
 
     <!-- Camp weeks -->
     <div class="card">
-      <div class="card-title">🏀 Select Camp Week(s) — $250 / week</div>
+      <div class="card-title">🏀 Select Camp Week(s) — $175 / week</div>
       <div class="weeks">
         <label class="week-opt">
-          <input type="checkbox" class="wk-check" name="week_jun29" value="Week of June 29 – July 2" data-price="250" />
+          <input type="checkbox" class="wk-check" name="week_jun22" value="Week of June 22 – 25" data-price="175" />
+          <div class="box">
+            <span class="check">✓</span>
+            <div class="wk">Week 1</div>
+            <div class="dt">June 22 – 25</div>
+            <div class="pr">$175</div>
+          </div>
+        </label>
+        <label class="week-opt">
+          <input type="checkbox" class="wk-check" name="week_jun29" value="Week of June 29 – July 2" data-price="175" />
           <div class="box">
             <span class="check">✓</span>
             <div class="wk">Week 2</div>
             <div class="dt">June 29 – July 2</div>
-            <div class="pr">$250</div>
+            <div class="pr">$175</div>
           </div>
         </label>
         <label class="week-opt">
-          <input type="checkbox" class="wk-check" name="week_jul13" value="Week of July 13 – 16" data-price="250" />
+          <input type="checkbox" class="wk-check" name="week_jul6" value="Week of July 6 – 9" data-price="175" />
+          <div class="box">
+            <span class="check">✓</span>
+            <div class="wk">Week 3</div>
+            <div class="dt">July 6 – 9</div>
+            <div class="pr">$175</div>
+          </div>
+        </label>
+        <label class="week-opt">
+          <input type="checkbox" class="wk-check" name="week_jul13" value="Week of July 13 – 16" data-price="175" />
           <div class="box">
             <span class="check">✓</span>
             <div class="wk">Week 4</div>
             <div class="dt">July 13 – 16</div>
-            <div class="pr">$250</div>
+            <div class="pr">$175</div>
           </div>
         </label>
       </div>
@@ -233,7 +251,7 @@
     ZELLE: 'ronald.andaya@gmail.com'
   };
   // ───────────────────────────────────────────────────────────
-  const PRICE_PER_WEEK = 250;
+  const PRICE_PER_WEEK = 175;
 
   const form = document.getElementById('reg-form');
   const totalDisplay = document.getElementById('total-display');
