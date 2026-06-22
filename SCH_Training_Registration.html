@@ -70,6 +70,17 @@
   .summary-rows{margin-bottom:6px;}
   .summary-rows .sr{display:flex;justify-content:space-between;font-size:.88rem;padding:5px 0;border-bottom:1px dashed var(--border);color:var(--muted);}
   .summary-rows .sr strong{color:var(--text);}
+  /* day grid */
+  .wk-block{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:12px;background:rgba(0,0,0,.22);}
+  .wk-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+  .wk-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;color:var(--white);}
+  .wk-dt{color:var(--muted);font-size:.82rem;}
+  .wk-sub{margin-left:auto;font-size:.82rem;font-weight:700;color:var(--teal);}
+  .wk-days{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  .day-tog{position:relative;display:block;}
+  .day-tog input{position:absolute;opacity:0;width:0;height:0;}
+  .day-tog .dname{display:block;text-align:center;border:1.5px solid var(--border);border-radius:8px;padding:11px 0;cursor:pointer;color:var(--text);font-weight:600;font-size:.9rem;transition:.15s;}
+  .day-tog input:checked + .dname{border-color:var(--teal);background:var(--card2);color:var(--teal);}
   .summary{position:sticky;bottom:0;background:linear-gradient(0deg,var(--bg2),rgba(26,26,26,.92));border:1px solid var(--teal);border-radius:16px;padding:18px 22px;margin-top:8px;}
   .summary .top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
   .summary .lbl{color:var(--muted);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;}
@@ -101,100 +112,59 @@
   <form id="reg-form" novalidate>
     <input type="hidden" name="formType" value="Training" />
 
-    <!-- Program selection -->
+    <!-- Group training day grid -->
     <div class="card">
-      <div class="card-title">🏀 Choose Your Training</div>
-      <div class="card-sub">Use the + / − to select quantities. Mix and match — e.g. a Week Pass plus a 1:1 package.</div>
-      <div class="pay-note" style="margin-top:0;margin-bottom:16px;">Small group is <strong>$70 per 90-minute session, with a 5-player minimum</strong>. If fewer players register for your time slot, it may run as semi-private or 1:1 at the listed rates. <strong>We'll confirm your group, format, and final price before any payment</strong> — your total below is an estimate.</div>
+      <div class="card-title">🏀 Group Training — Pick Your Days</div>
+      <div class="card-sub">90-min small group · 12:30–2:00pm · 5–8 players · <strong>$70/day</strong>. Pick all four days in a week and it automatically becomes the <strong>$240 Week Pass</strong> (save $40).</div>
+        <div class="wk-block">
+          <div class="wk-head"><span class="wk-name">Week 1</span><span class="wk-dt">Jun 22–25</span><span class="wk-sub" data-sub="1"></span></div>
+          <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="1" data-day="Thu" /><span class="dname">Thu</span></label></div>
+        </div>
+        <div class="wk-block">
+          <div class="wk-head"><span class="wk-name">Week 2</span><span class="wk-dt">Jun 29–Jul 2</span><span class="wk-sub" data-sub="2"></span></div>
+          <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="2" data-day="Thu" /><span class="dname">Thu</span></label></div>
+        </div>
+        <div class="wk-block">
+          <div class="wk-head"><span class="wk-name">Week 3</span><span class="wk-dt">Jul 6–9</span><span class="wk-sub" data-sub="3"></span></div>
+          <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="3" data-day="Thu" /><span class="dname">Thu</span></label></div>
+        </div>
+        <div class="wk-block">
+          <div class="wk-head"><span class="wk-name">Week 4</span><span class="wk-dt">Jul 13–16</span><span class="wk-sub" data-sub="4"></span></div>
+          <div class="wk-days"><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Mon" /><span class="dname">Mon</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Tue" /><span class="dname">Tue</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Wed" /><span class="dname">Wed</span></label><label class="day-tog"><input type="checkbox" class="day" data-week="4" data-day="Thu" /><span class="dname">Thu</span></label></div>
+        </div>
+      <div class="pay-note" style="margin-top:14px;margin-bottom:0;">5-player minimum per session. If fewer register for a day it may run as semi-private or 1:1. <strong>We'll confirm your group, days, and final price before any payment</strong> — your total below is an estimate.</div>
+    </div>
 
+    <!-- Private add-ons -->
+    <div class="card">
+      <div class="card-title">🎯 Add Private Training <span style="font-size:.7rem;color:var(--muted);">(optional)</span></div>
+      <div class="card-sub">1:1 &amp; semi-private run 2:00–3:00pm. We'll set specific days with you after you register.</div>
       <div class="prog-group">
-        <div class="gh">Small Group Training (5–8 players)</div>
         <div class="prog" data-row>
-          <div class="info"><div class="nm">Drop-In Session</div><div class="ds">One 90-minute session</div></div>
-          <div class="right"><div class="pr">$70</div>
-            <div class="stepper" data-name="sg_dropin" data-price="70" data-label="Small Group Drop-In">
-              <button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button>
-            </div>
+          <div class="info"><div class="nm">1:1 Private (1 hr)</div><div class="ds" id="oo-note">$90/hr · 5+ sessions $85/hr · 10+ $80/hr (auto-applied)</div></div>
+          <div class="right"><div class="pr" id="oo-disp">$90</div>
+            <div class="stepper" data-name="oo"><button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button></div>
           </div>
         </div>
         <div class="prog" data-row>
-          <div class="info"><div class="nm">Week Pass</div><div class="ds">4× 90-min sessions, Mon–Thu · save $40</div></div>
-          <div class="right"><div class="pr">$240</div>
-            <div class="stepper" data-name="sg_weekpass" data-price="240" data-label="Small Group Week Pass">
-              <button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="prog-group">
-        <div class="gh">1:1 Private Training</div>
-        <div class="prog" data-row>
-          <div class="info"><div class="nm">Single Session</div><div class="ds">1 hour, one-on-one</div></div>
-          <div class="right"><div class="pr">$90</div>
-            <div class="stepper" data-name="oo_single" data-price="90" data-label="1:1 Single">
-              <button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button>
-            </div>
-          </div>
-        </div>
-        <div class="prog" data-row>
-          <div class="info"><div class="nm">5-Pack</div><div class="ds">5 hours · $85/hr (save $25)</div></div>
-          <div class="right"><div class="pr">$425</div>
-            <div class="stepper" data-name="oo_5pack" data-price="425" data-label="1:1 5-Pack">
-              <button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button>
-            </div>
-          </div>
-        </div>
-        <div class="prog" data-row>
-          <div class="info"><div class="nm">10-Pack</div><div class="ds">10 hours · $80/hr (save $100)</div></div>
-          <div class="right"><div class="pr">$800</div>
-            <div class="stepper" data-name="oo_10pack" data-price="800" data-label="1:1 10-Pack">
-              <button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="prog-group">
-        <div class="gh">Semi-Private Training (per player)</div>
-        <div class="prog" data-row>
-          <div class="info"><div class="nm">2:1 Session</div><div class="ds">1 hour, you + a teammate · per player</div></div>
+          <div class="info"><div class="nm">Semi-Private 2:1</div><div class="ds">1 hr, you + a teammate · per player</div></div>
           <div class="right"><div class="pr">$65</div>
-            <div class="stepper" data-name="semi_2" data-price="65" data-label="Semi-Private 2:1">
-              <button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button>
-            </div>
+            <div class="stepper" data-name="semi_2"><button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button></div>
           </div>
         </div>
         <div class="prog" data-row>
-          <div class="info"><div class="nm">3–4 Player Session</div><div class="ds">1 hour, small crew · per player</div></div>
+          <div class="info"><div class="nm">Semi-Private 3–4 Player</div><div class="ds">1 hr, small crew · per player</div></div>
           <div class="right"><div class="pr">$50</div>
-            <div class="stepper" data-name="semi_34" data-price="50" data-label="Semi-Private 3–4:1">
-              <button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button>
-            </div>
+            <div class="stepper" data-name="semi_34"><button type="button" class="minus">−</button><span class="step-val">0</span><button type="button" class="plus">+</button></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Week & block preference -->
+    <!-- Notes -->
     <div class="card">
-      <div class="card-title">📅 Week & Time Preference</div>
-      <div class="field"><label>Which training week(s)?</label>
-        <div class="chips">
-          <div class="chip"><input type="checkbox" id="w1" name="pref_week1" value="Week 1 (Jun 22–25)" /><label for="w1">Wk 1 · Jun 22–25</label></div>
-          <div class="chip"><input type="checkbox" id="w2" name="pref_week2" value="Week 2 (Jun 29–Jul 2)" /><label for="w2">Wk 2 · Jun 29–Jul 2</label></div>
-          <div class="chip"><input type="checkbox" id="w3" name="pref_week3" value="Week 3 (Jul 6–9)" /><label for="w3">Wk 3 · Jul 6–9</label></div>
-          <div class="chip"><input type="checkbox" id="w4" name="pref_week4" value="Week 4 (Jul 13–16)" /><label for="w4">Wk 4 · Jul 13–16</label></div>
-          <div class="chip"><input type="checkbox" id="wf" name="pref_flexible" value="Flexible / any" /><label for="wf">Flexible</label></div>
-        </div>
-      </div>
-      <div class="field"><label>Preferred block(s)</label>
-        <div class="chips">
-          <div class="chip"><input type="checkbox" id="b1" name="block_group" value="12:30–2:00 Group Training" /><label for="b1">12:30–2 Group Training</label></div>
-          <div class="chip"><input type="checkbox" id="b2" name="block_priv" value="2:00–3:00 1:1 / Semi-Private" /><label for="b2">2–3 1:1 / Semi-Private</label></div>
-        </div>
-      </div>
-      <div class="field"><label>Scheduling notes</label><textarea name="schedNotes" placeholder="Days that work best, skills to focus on, etc."></textarea></div>
+      <div class="card-title">📝 Scheduling Notes</div>
+      <div class="field"><label>Anything we should know?</label><textarea name="schedNotes" placeholder="Preferred 1:1 days, teammate for semi-private, skills to focus on, etc."></textarea></div>
     </div>
 
     <!-- Player -->
@@ -296,55 +266,67 @@
   const form = document.getElementById('reg-form');
   const totalDisplay = document.getElementById('total-display');
   const summaryRows = document.getElementById('summary-rows');
-  const steppers = document.querySelectorAll('.stepper');
   const payNote = document.getElementById('pay-note');
   const statusMsg = document.getElementById('status-msg');
   const submitBtn = document.getElementById('submit-btn');
 
-  const state = {};
-  steppers.forEach(s=>{ state[s.dataset.name]=0; });
+  const WEEKS=[{n:1,label:'Week 1'},{n:2,label:'Week 2'},{n:3,label:'Week 3'},{n:4,label:'Week 4'}];
+  const DAY_PRICE=70, WEEK_PASS=240, SEMI={semi_2:65,semi_34:50};
+  const dayChecks=[...document.querySelectorAll('.day')];
+  const steppers=document.querySelectorAll('.stepper');
+  const state={}; steppers.forEach(s=>state[s.dataset.name]=0);
+  const ooRate=q=>q>=10?80:(q>=5?85:90);
 
-  function updateSummary(){
+  function calc(){
     let total=0; const lines=[];
-    steppers.forEach(s=>{
-      const qty=state[s.dataset.name]||0, price=parseInt(s.dataset.price);
-      if(qty>0){ total+=qty*price; lines.push({label:s.dataset.label,qty,price,sub:qty*price}); }
+    WEEKS.forEach(w=>{
+      const days=dayChecks.filter(c=>c.dataset.week==w.n && c.checked).map(c=>c.dataset.day);
+      const sub=document.querySelector('[data-sub="'+w.n+'"]');
+      if(days.length===0){ if(sub) sub.textContent=''; return; }
+      let cost,note;
+      if(days.length===4){ cost=WEEK_PASS; note='Week Pass · save $40 · $240'; }
+      else { cost=days.length*DAY_PRICE; note=days.length+' day'+(days.length>1?'s':'')+' · $'+cost; }
+      if(sub) sub.textContent=note; total+=cost;
+      lines.push({label:w.label+' group ('+(days.length===4?'full week':days.length+' day'+(days.length>1?'s':''))+')',sub:cost});
+    });
+    const ooQ=state.oo||0, r=ooRate(ooQ);
+    const ooDisp=document.getElementById('oo-disp'); if(ooDisp) ooDisp.textContent='$'+r;
+    if(ooQ>0){ const c=ooQ*r; total+=c; lines.push({label:'1:1 Private × '+ooQ+' @ $'+r+'/hr',sub:c}); }
+    [['semi_2','Semi-Private 2:1'],['semi_34','Semi-Private 3–4']].forEach(([k,lab])=>{
+      const q=state[k]||0; if(q>0){ const c=q*SEMI[k]; total+=c; lines.push({label:lab+' × '+q,sub:c}); }
     });
     totalDisplay.textContent='$'+total.toLocaleString();
-    summaryRows.innerHTML = lines.length===0
-      ? '<div class="sr" style="font-style:italic;">Select training above to see your total.</div>'
-      : lines.map(l=>`<div class="sr"><span>${l.label} × ${l.qty}</span><strong>$${l.sub.toLocaleString()}</strong></div>`).join('');
+    summaryRows.innerHTML = lines.length===0 ? '<div class="sr" style="font-style:italic;">Pick days or add private training to see your total.</div>' : lines.map(l=>'<div class="sr"><span>'+l.label+'</span><strong>$'+l.sub.toLocaleString()+'</strong></div>').join('');
+    return {total,lines};
   }
-  steppers.forEach(stp=>{
-    const name=stp.dataset.name, valEl=stp.querySelector('.step-val'), rowEl=stp.closest('.prog');
-    stp.querySelector('.plus').addEventListener('click',()=>{ if(state[name]<20){ state[name]++; valEl.textContent=state[name]; rowEl.classList.toggle('active',state[name]>0); updateSummary(); } });
-    stp.querySelector('.minus').addEventListener('click',()=>{ if(state[name]>0){ state[name]--; valEl.textContent=state[name]; rowEl.classList.toggle('active',state[name]>0); updateSummary(); } });
+  dayChecks.forEach(c=>c.addEventListener('change',calc));
+  steppers.forEach(stp=>{ const name=stp.dataset.name,valEl=stp.querySelector('.step-val'),row=stp.closest('.prog');
+    stp.querySelector('.plus').addEventListener('click',()=>{ if(state[name]<30){ state[name]++; valEl.textContent=state[name]; row.classList.toggle('active',state[name]>0); calc(); }});
+    stp.querySelector('.minus').addEventListener('click',()=>{ if(state[name]>0){ state[name]--; valEl.textContent=state[name]; row.classList.toggle('active',state[name]>0); calc(); }});
   });
-  updateSummary();
+  calc();
 
   function payInstructions(method){
     if(method==='Venmo') return 'Send payment to <strong>'+CONFIG.VENMO+'</strong> (Venmo).';
     if(method==='Zelle') return 'Send payment to <strong>'+CONFIG.ZELLE+'</strong> (Zelle).';
-    return 'We’ll arrange cash or another method with you directly.';
+    return 'We’ll arrange another method with you directly.';
   }
-  form.querySelectorAll('input[name=payment]').forEach(r=>{
-    r.addEventListener('change',()=>{ payNote.innerHTML = payInstructions(r.value)+' Please pay after you receive confirmation.'; });
-  });
+  form.querySelectorAll('input[name=payment]').forEach(r=>{ r.addEventListener('change',()=>{ payNote.innerHTML=payInstructions(r.value)+' Please pay after you receive confirmation.'; }); });
 
   function buildPayload(){
-    const data={}; const fd=new FormData(form);
-    fd.forEach((v,k)=>{ data[k]=v; });
-    steppers.forEach(s=>{ data[s.dataset.name]=state[s.dataset.name]||0; });
-    data.total = totalDisplay.textContent;
-    data.itemsSelected = [...steppers].filter(s=>state[s.dataset.name]>0).map(s=>s.dataset.label+' × '+state[s.dataset.name]).join('; ');
-    data.waiverAgree = document.getElementById('waiverAgree').checked?'Yes':'No';
-    data.photoRelease = document.getElementById('photoRelease').checked?'Yes':'No';
-    data.timestamp = new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'});
+    const data={}; const fd=new FormData(form); fd.forEach((v,k)=>data[k]=v);
+    const sel=[]; WEEKS.forEach(w=>{ const days=dayChecks.filter(c=>c.dataset.week==w.n&&c.checked).map(c=>c.dataset.day); if(days.length) sel.push(w.label+': '+(days.length===4?'Full week ('+days.join(', ')+')':days.join(', '))); });
+    data.groupDays=sel.join(' | ');
+    data.oneOnOne=state.oo||0; data.oneOnOneRate=ooRate(state.oo||0); data.semiPriv2=state.semi_2||0; data.semiPriv34=state.semi_34||0;
+    const c=calc(); data.total=totalDisplay.textContent; data.itemsSelected=c.lines.map(l=>l.label).join('; ');
+    data.waiverAgree=document.getElementById('waiverAgree').checked?'Yes':'No';
+    data.photoRelease=document.getElementById('photoRelease').checked?'Yes':'No';
+    data.timestamp=new Date().toLocaleString('en-US',{timeZone:'America/Los_Angeles'});
     return data;
   }
   function validate(d){
     const total=parseFloat(totalDisplay.textContent.replace(/[$,]/g,''));
-    if(total===0) return 'Please select at least one training option.';
+    if(total===0) return 'Please pick at least one training day or session.';
     if(!d.playerFirst?.trim()||!d.playerLast?.trim()) return "Please enter the player's name.";
     if(!d.grade) return 'Please select a grade.';
     if(!d.parentName?.trim()) return 'Please enter a parent/guardian name.';
@@ -362,17 +344,11 @@
     const data=buildPayload(); const err=validate(data);
     if(err){ showErr(err); return; }
     submitBtn.disabled=true; submitBtn.textContent='Submitting…';
-
     document.getElementById('modal-sub').innerHTML = data.playerFirst+' is registered for: <strong>'+data.itemsSelected+'</strong>.';
-    document.getElementById('modal-pay').innerHTML = '<strong>Estimated total: '+data.total+'</strong><br>We’ll confirm your group, format, and final price before any payment.<br>'+payInstructions(data.payment)+'<br>A confirmation will be sent to <strong>'+data.email+'</strong>.';
+    document.getElementById('modal-pay').innerHTML = '<strong>Estimated total: '+data.total+'</strong><br>We’ll confirm your group, days, and final price before any payment.<br>'+payInstructions(data.payment)+'<br>A confirmation will be sent to <strong>'+data.email+'</strong>.';
     document.getElementById('confirm-modal').classList.add('open');
-
-    if(CONFIG.APPS_SCRIPT_URL && !CONFIG.APPS_SCRIPT_URL.startsWith('PASTE_')){
-      fetch(CONFIG.APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(()=>{});
-    }
-    form.reset();
-    steppers.forEach(s=>{ state[s.dataset.name]=0; s.querySelector('.step-val').textContent='0'; s.closest('.prog').classList.remove('active'); });
-    updateSummary(); payNote.innerHTML=''; submitBtn.textContent='Registered ✓';
+    if(CONFIG.APPS_SCRIPT_URL && !CONFIG.APPS_SCRIPT_URL.startsWith('PASTE_')){ fetch(CONFIG.APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).catch(()=>{}); }
+    form.reset(); steppers.forEach(s=>{ state[s.dataset.name]=0; s.querySelector('.step-val').textContent='0'; s.closest('.prog').classList.remove('active'); }); calc(); payNote.innerHTML=''; submitBtn.textContent='Registered ✓';
   });
   document.getElementById('modal-close-btn').addEventListener('click',()=>{ document.getElementById('confirm-modal').classList.remove('open'); submitBtn.disabled=false; submitBtn.textContent='Register Now'; });
   document.getElementById('confirm-modal').addEventListener('click',e=>{ if(e.target===e.currentTarget){ e.currentTarget.classList.remove('open'); submitBtn.disabled=false; submitBtn.textContent='Register Now'; } });
